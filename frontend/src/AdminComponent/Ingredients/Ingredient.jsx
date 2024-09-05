@@ -1,7 +1,7 @@
 import React from "react"
 import IngredientTable from "./IngredientTable"
 import {Grid2} from "@mui/material"
-import IngredientCategoryTable from "./IngredientCategory"
+import {IngredientCategoryTable} from "./IngredientCategoryTable"
 
 export const Ingredient =() => {
     return(
