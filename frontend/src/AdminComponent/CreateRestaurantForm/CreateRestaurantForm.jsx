@@ -5,6 +5,8 @@ import AddPhotoAlternateIcon from '@mui/icons-material/AddPhotoAlternate';
 import CancelPresentationIcon from '@mui/icons-material/CancelPresentation';
 import { Instagram } from '@mui/icons-material';
 import { uploadImageToCloudinary } from '../util/UploadToCloudinary';
+import { createRestaurant } from '../../component/State/Restaurant/Action';
+import { useDispatch } from 'react-redux';
 
 const initialValues = {
   name: '',
@@ -25,6 +27,9 @@ const initialValues = {
 
 const CreateRestaurantForm = () => {
 const [uploadImage,setUploadImage] = useState(false)
+const dispatch = useDispatch()
+const jwt=localStorage.getItem("jwt");
+
 const formik = useFormik({
   initialValues,
   onSubmit:(values)=> {
@@ -43,8 +48,9 @@ const formik = useFormik({
 
       openingHours:values.openingHours,
       images:values.images
-    }
+    };
     console.log("data ---",data)
+    dispatch(createRestaurant({data, token:jwt}))
   },
 });
 
@@ -52,7 +58,7 @@ const handleImageChange = async (e) => {
   const file = e.target.files[0]
   setUploadImage(true)
   const image = await uploadImageToCloudinary(file)
-  console.log("imag e---", image)
+  console.log("image---", image)
   formik.setFieldValue('images', [...formik.values.images, image])
   setUploadImage(false)
 }

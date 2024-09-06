@@ -3,26 +3,37 @@ import React from 'react'
 import InstagramIcon from '@mui/icons-material/Instagram';
 import XIcon from '@mui/icons-material/X';
 import FacebookIcon from '@mui/icons-material/Facebook';
+import { useDispatch, useSelector } from 'react-redux';
+import { updateRestaurantStatus } from '../../component/State/Restaurant/Action';
 
 
 export const RestaurantDetails = () => {
+  const {restaurant}=useSelector((store)=>store);
+  const dispatch = useDispatch();
+  console.log("Restaurant Details",restaurant);
+
   const handleRestaurantStatus = () => {
-    // Handle status change here
-  }
+dispatch(updateRestaurantStatus({
+  restaurantId:restaurant.usersRestaurant.id,
+  jwt:localStorage.getItem("jwt"),
+}))
+  };
 
   return (
     <div className='lg:px-20 px-5 pb-10'>
       <div className='py-5 flex justify-center items-center gap-5'>
-        <h1 className='text-2xl lg:text-7xl text-center font-bold p-5'>ABC Restaurant </h1>
+        <h1 className='text-2xl lg:text-7xl text-center font-bold p-5'>
+          {restaurant.usersRestaurant?.name}
+        </h1>
         <div>
           <Button
-            color={true ? "primary" : "error"}
+            color={!restaurant.usersRestaurant?.open? "primary" : "error"}
             className='py-[1rem] px-[2rem]'
             variant='contained'
             onClick={handleRestaurantStatus}
             size='large'
           >
-            {true ? "Close" : "Open"}
+            {restaurant.usersRestaurant?.open? "Close" : "Open"}
           </Button>
         </div>
       </div>
@@ -36,28 +47,37 @@ export const RestaurantDetails = () => {
                 {/* Restaurant details go here */}
                 <div className='flex'>
                   <p className='w-48'>Owner</p>
-                  <p className='text-gray-400'><span className='pr-5'>-</span>Yasithra</p>
+                  <p className='text-gray-400'><span className='pr-5'>-</span>
+                  {restaurant.usersRestaurant?.staff.fullName}
+                  </p>
                 </div>
                 <div className='flex'>
                   <p className='w-48'>Restaurant Name</p>
-                  <p className='text-gray-400'><span className='pr-5'>-</span>ABC-Indian</p>
+                  <p className='text-gray-400'><span className='pr-5'>-</span>
+                  {restaurant.usersRestaurant?.name}
+                  </p>
                 </div>
                 <div className='flex'>
                   <p className='w-48'>Cuisine Type</p>
-                  <p className='text-gray-400'><span className='pr-5'>-</span>South Indian</p>
+                  <p className='text-gray-400'><span className='pr-5'>-</span>
+                  {restaurant.usersRestaurant?.cuisineType}
+                  </p>
                 </div>
                 <div className='flex'>
                   <p className='w-48'>Opening Hours</p>
-                  <p className='text-gray-400'><span className='pr-5'>-</span>9:00 AM - 9:00 PM</p>
+                  <p className='text-gray-400'><span className='pr-5'>-</span>
+                  {restaurant.usersRestaurant?.openingHours}
+                  </p>
                 </div>
                 <div className='flex'>
                   <p className='w-48'>Status</p>
                   <p className='text-gray-400'>
                     <span className='pr-5'>-</span>
-                    {true ?
-                      <span className='px-5 py-2 rounded-full bg-green-400 text-gray-950'>Open</span>
-                      :
-                      <span className='px-5 py-2 rounded-full bg-red-400 text-gray-50'>Closed</span>
+                    {restaurant.usersRestaurant?.open?
+                      <span className='px-5 py-2 rounded-full bg-green-400 text-gray-950'>Open 
+                      </span>:<span className='px-5 py-2 rounded-full bg-red-400 text-gray-50'>
+                        Closed
+                      </span>
                     }
                   </p>
                 </div>
@@ -75,7 +95,9 @@ export const RestaurantDetails = () => {
                 {/* Address details go here */}
                 <div className='flex'>
                   <p className='w-48'>Street</p>
-                  <p className='text-gray-400'><span className='pr-5'>-</span>No78, main street, matara</p>
+                  <p className='text-gray-400'><span className='pr-5'>-</span>
+                  No78, main street, matara
+                  </p>
                 </div>
                 <div className='flex'>
                   <p className='w-48'>City</p>
@@ -103,11 +125,15 @@ export const RestaurantDetails = () => {
                 {/* Contact details go here */}
                 <div className='flex'>
                   <p className='w-48'>Phone</p>
-                  <p className='text-gray-400'><span className='pr-5'>-</span>078 2805508</p>
+                  <p className='text-gray-400'><span className='pr-5'>-</span>
+                  {restaurant.usersRestaurant?.contactInformation.mobile}
+                  </p>
                 </div>
                 <div className='flex'>
                   <p className='w-48'>Email</p>
-                  <p className='text-gray-400'><span className='pr-5'>-</span>ABC-India@gmail.com</p>
+                  <p className='text-gray-400'><span className='pr-5'>-</span>
+                  {restaurant.usersRestaurant?.contactInformation.email}
+                  </p>
                 </div>
                 <div className='flex'>
                   <p className='w-48'>Social</p>

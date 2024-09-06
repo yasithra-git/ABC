@@ -3,7 +3,7 @@ import *as actionType from "./ActionType";
 
 const initialState = {
     restaurants: [],
-    usersRestaurent: null,
+    usersRestaurant: null,
     loading: false,
     error: null,
     events: [],
@@ -26,31 +26,31 @@ const restaurantReducer = (state = initialState, action) => {
 
         case actionType.CREATE_RESTAURANT_SUCCESS:
             return{
-                ...state, loading: false, usersRestaurent:action.payload,
+                ...state, loading: false, usersRestaurant:action.payload,
             };
 
         case actionType.GET_ALL_RESTAURANTS_SUCCESS:
             return{
-                ...state, loading: false, restaurents:action.payload,
+                ...state, loading: false, restaurants:action.payload,
             };
 
         case actionType.GET_RESTAURANT_BY_ID_SUCCESS:
             return{
-                ...state, loading: false, restaurent:action.payload,
+                ...state, loading: false, restaurant:action.payload,
             };
 
         case actionType.GET_RESTAURANT_BY_USER_ID_SUCCESS:
         case actionType.UPDATE_RESTAURANT_STATUS_SUCCESS:
         case actionType.UPDATE_RESTAURANT_SUCCESS:
             return{
-                ...state, loading: false, usersRestaurent:action.payload,
+                ...state, loading: false, usersRestaurant:action.payload,
             };
 
         case actionType.DELETE_RESTAURANT_SUCCESS:
             return{
-                ...state, loading: false, restaurents:state.restaurants.filter(
+                ...state, loading: false, restaurants:state.restaurants.filter(
                     (item) => item.id !== action.payload),
-                    usersRestaurent: state.usersRestaurent.filter(
+                    usersRestaurant: state.usersRestaurant.filter(
                         (item) => item.id !== action.payload),
             };
 
