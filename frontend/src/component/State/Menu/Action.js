@@ -37,7 +37,7 @@ export const createManuItem = ({menu,jwt}) => {
     };
 };
 
-export const getManuItemsByRestaurantId = ({reqData}) => {
+export const getMenuItemsByRestaurantId = (reqData) => {
     return async (dispatch) => {
         dispatch({type:GET_MENU_ITEMS_BY_RESTAURANT_ID_REQUEST});
         try {

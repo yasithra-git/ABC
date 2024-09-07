@@ -1,5 +1,5 @@
 import { token } from "@mui/icons-material";
-import {api} from "../../config/api";
+
 import{
     CREATE_CATEGORY_REQUEST,
     CREATE_CATEGORY_SUCCESS,
@@ -49,6 +49,7 @@ import{
     DELETE_RESTAURANT_FAILURE,
 
 } from "./ActionType";
+import { api } from "../../config/api";
 
 export const getAllRestaurantsAction = (token) => {
     return async (dispatch) => {

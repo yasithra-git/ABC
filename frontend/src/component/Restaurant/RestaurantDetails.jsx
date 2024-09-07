@@ -7,7 +7,7 @@ import MenuCard from './MenuCard';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { getRestaurantById, getRestaurantsCategory } from '../State/Restaurant/Action';
-import { getManuItemsByRestaurantId } from '../State/Menu/Action';
+import { getMenuItemsByRestaurantId } from '../State/Menu/Action';
 
 
 
@@ -50,7 +50,7 @@ const RestaurantDetails = () => {
 
     useEffect(()=>{
         
-        dispatch(getManuItemsByRestaurantId({jwt, restaurantId:id, 
+        dispatch(getMenuItemsByRestaurantId({jwt, restaurantId:id, 
             vegetarian:foodType==="vegetarian", 
             nonveg:foodType==="non_vegetarian", 
             seasonal:foodType==="seasonal", 

@@ -1,5 +1,7 @@
 import { Box, Card, CardHeader, Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from '@mui/material'
-import React from 'react'
+import React, { useEffect } from 'react'
+import { useDispatch, useSelector } from 'react-redux';
+import { fetchRestaurantsOrder } from '../../component/State/RestaurantOrder/Action';
 
 
 const orders = [
@@ -7,6 +9,19 @@ const orders = [
 ]
 
 export const OrderTable = () => {
+
+  const dispatch=useDispatch();
+  const jwt = localStorage.getItem("jwt");
+  const {restaurant,ingredients,menu}=useSelector((store)=>store);
+
+  useEffect(()=>{
+    dispatch(fetchRestaurantsOrder({
+      jwt,
+      restaurantId:restaurant.usersRestaurant?.id,
+    }))
+  },[]);
+
+  
   return (
     <Box>
       <Card className='mt-1'>

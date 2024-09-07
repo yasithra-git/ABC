@@ -1,15 +1,36 @@
-import { Box, Card, CardHeader, IconButton, Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from '@mui/material'
-import React from 'react'
+import { Avatar, Box, Card, CardHeader, Chip, IconButton, Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from '@mui/material'
+import React, { useEffect } from 'react'
 import CreateIcon from '@mui/icons-material/Create';
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
 import { useNavigate } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { deleteFoodAction, getMenuItemsByRestaurantId } from '../../component/State/Menu/Action';
 
-const orders = [1,1,1,1]
+
 
 export const MenuTable = () => {
 
+  const dispatch=useDispatch();
+  const jwt = localStorage.getItem("jwt");
+  const {restaurant,ingredients,menu}=useSelector((store)=>store);
+
   const navigate = useNavigate();
   
+  useEffect(() => {
+    dispatch(getMenuItemsByRestaurantId({
+      jwt,
+      restaurantId:restaurant.usersRestaurant.id,
+      vegetarian:false,
+      nonveg:false,
+      seasonal:false,
+      foodCategory:"",
+  }));
+},[]);
+
+const handleDeleteFood = (foodId)=>{
+  dispatch(deleteFoodAction({foodId,jwt}));
+}
+
   return (
     <Box>
       <Card className='mt-1'>
@@ -31,19 +52,27 @@ export const MenuTable = () => {
           </TableRow>
         </TableHead>
         <TableBody>
-          {orders.map((row) => (
+          {menu.menuItems.map((item) => (
             <TableRow
-              key={row.name}
+              key={item.id}
               sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
             >
               <TableCell component="th" scope="row">
-                {row.name}
+                <Avatar src={item.images[0]}></Avatar>
+                </TableCell>
+              <TableCell align="right">{item.name}</TableCell>
+
+              <TableCell align="right">
+                {item.ingredients.map((ingredient) => ( <Chip label={ingredient.name} key={ingredient.id} />))}
               </TableCell>
-              <TableCell align="right">{"image"}</TableCell>
-              <TableCell align="right">{"@gmail"}</TableCell>
-              <TableCell align="right">{"price"}</TableCell>
-              <TableCell align="right">{"pizza"}</TableCell>
-              <TableCell align="right"><IconButton><DeleteForeverIcon/></IconButton></TableCell>
+              
+              <TableCell align="right">Rs:{item.price}</TableCell>
+              <TableCell align="right">{item.available?"in_stock":"out_of_stock"}</TableCell>
+              <TableCell align="right">
+                <IconButton color="primary" onClick={() => handleDeleteFood(item.id)}>
+                  <DeleteForeverIcon/>
+                  </IconButton>
+              </TableCell>
             </TableRow>
           ))}
         </TableBody>

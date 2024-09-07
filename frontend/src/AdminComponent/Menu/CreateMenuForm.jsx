@@ -1,10 +1,13 @@
 import { Box, Button, Chip, CircularProgress, FormControl, Grid, IconButton, InputLabel, MenuItem, OutlinedInput, Select, TextField } from '@mui/material'
 import { useFormik } from 'formik'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import AddPhotoAlternateIcon from '@mui/icons-material/AddPhotoAlternate';
 import CancelPresentationIcon from '@mui/icons-material/CancelPresentation';
 import { Instagram } from '@mui/icons-material';
 import { uploadImageToCloudinary } from '../util/UploadToCloudinary';
+import { useDispatch, useSelector } from 'react-redux';
+import { createManuItem } from '../../component/State/Menu/Action';
+import { getIngredientsOfRestaurant } from '../../component/State/Ingredients/Action';
 
 const initialValues = {
   name: '',
@@ -20,11 +23,16 @@ const initialValues = {
 
 
 const CreateMenuForm = () => {
-const [uploadImage,setUploadImage] = useState(false)
-const formik = useFormik({
+  const dispatch=useDispatch();
+  const jwt = localStorage.getItem("jwt");
+  const {restaurant,ingredients}=useSelector((store)=>store);
+  const [uploadImage,setUploadImage] = useState(false)
+  const formik = useFormik({
   initialValues,
   onSubmit:(values)=> {
-    values.restaurantId = 2
+    values.restaurantId = 2;
+    dispatch(createManuItem({menu:values,jwt}));
+
     console.log("data ---",values)
   },
 });
@@ -33,7 +41,7 @@ const handleImageChange = async (e) => {
   const file = e.target.files[0]
   setUploadImage(true)
   const image = await uploadImageToCloudinary(file)
-  console.log("imag e---", image)
+  console.log("image---", image)
   formik.setFieldValue('images', [...formik.values.images, image])
   setUploadImage(false)
 }
@@ -43,6 +51,10 @@ const handleRemoveImage = (index) => {
   updatedImages.splice(index, 1);
   formik.setFieldValue('images', updatedImages);
 };
+
+useEffect(() => {
+  dispatch(getIngredientsOfRestaurant({jwt,id:restaurant.usersRestaurant.id}));
+  },[]);
 
   return (
     <div className='py-10 px-5 lg:flex items-center justify-center min-h-screen'>
@@ -134,9 +146,8 @@ const handleRemoveImage = (index) => {
                     onChange={formik.handleChange}
                     name="category"
                 >
-                    <MenuItem value={10}>Ten</MenuItem>
-                    <MenuItem value={20}>Twenty</MenuItem>
-                    <MenuItem value={30}>Thirty</MenuItem>
+                    {restaurant.categories?.map((item)=><MenuItem value={item}>{item.name}</MenuItem>)}
+                    
                 </Select>
             </FormControl>
           </Grid>
@@ -156,18 +167,15 @@ const handleRemoveImage = (index) => {
                 renderValue={(selected) => (
                     <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 0.5 }}>
                     {selected.map((value) => (
-                        <Chip key={value} label={value} />
+                        <Chip key={value.id} label={value.name} />
                     ))}
                     </Box>
                 )}
                // MenuProps={MenuProps}
                 >
-                {['bread','sorce'].map((name) => (
-                    <MenuItem
-                    key={name}
-                    value={name}
-                    >
-                    {name}
+                {ingredients.ingredients?.map((item, index) => (
+                    <MenuItem key={item.id} value={item}>
+                    {item.name}
                     </MenuItem>
                 ))}
                 </Select>
@@ -210,7 +218,7 @@ const handleRemoveImage = (index) => {
             </Grid>
           
         </Grid>
-        <Button variant='contained' color='primary' type='submit'> Create Restaurant </Button>
+        <Button variant='contained' color='primary' type='submit'> Create Menu </Button>
       </form>
      </div>
     </div>
