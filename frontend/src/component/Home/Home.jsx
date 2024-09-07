@@ -3,9 +3,9 @@ import "./Home.css"
 import MultiItemCarousel from './MultiItemCarousel'
 import RestaurantCard from '../Restaurant/RestaurantCard'
 import { useDispatch, useSelector } from 'react-redux'
-import {getAllRestaurantsAction} from '../State/Restaurant/Action'
 import { useNavigate } from 'react-router-dom'
 import { findCart } from '../State/Cart/Action'
+import { getAllRestaurantsAction } from '../State/Restaurant/Action'
 
 const restaurants=[1,1,1,1,1,1]
 

@@ -27,9 +27,7 @@ useEffect(() => {
 }, [auth.jwt]);
 
 
-useEffect(() => {
-  dispatch(getRestaurantByUserId(auth.jwt || jwt));
-}, [auth.user]);
+
 
   return (
     <ThemeProvider theme={darktheme}>

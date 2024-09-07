@@ -5,6 +5,7 @@ import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import {isPresentInFavorites} from '../config/logic';
+import { addToFavorite } from '../State/Authentication/Action';
 
 const RestaurantCard = ({item}) => {
     const navigate=useNavigate();
@@ -13,7 +14,7 @@ const RestaurantCard = ({item}) => {
     const {auth}=useSelector(store=>store);
 
     const handleAddToFavorite=() => {
-        dispatch(handleAddToFavorite({restaurantId:item.id, jwt}))
+        dispatch(addToFavorite({restaurantId:item.id, jwt}))
     }
 
     const handleNavigateToRestaurant=()=>{
