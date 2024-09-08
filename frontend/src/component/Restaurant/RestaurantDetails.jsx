@@ -84,7 +84,7 @@ const RestaurantDetails = () => {
         <div className="col-span-6">
             <img
                 className="w-full h-[30vh] object-cover"
-                src={restaurant.restaurant?.image[2]}
+                src={restaurant.restaurant?.images[2]}
                 alt=""
             />
         </div>

@@ -87,7 +87,8 @@ const handleAddItemToCart=(e) =>{
         </div>
 
         <div className='pt-5'>
-            <Button variant='contained' disabled={false} type='submit'>{true?"Add to Cart":"Out of Stock"}</Button>
+            <Button onClick={handleAddItemToCart} variant='contained' 
+            disabled={false} type='submit'>{true?"Add to Cart":"Out of Stock"}</Button>
         </div>
       </form>
     </AccordionDetails>
