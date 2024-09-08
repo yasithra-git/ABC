@@ -8,7 +8,6 @@ import lombok.NoArgsConstructor;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Locale;
 
 @Entity
 @NoArgsConstructor
@@ -19,7 +18,7 @@ public class Restaurant {
     private Long id;
 
     @OneToOne
-    private User staff;
+    private User owner; // No need for ownerId, this handles it
 
     private String name;
 
@@ -51,16 +50,6 @@ public class Restaurant {
     @OneToMany(mappedBy = "restaurant", cascade = CascadeType.ALL)
     private List<Food> foods = new ArrayList<>();
 
-    private Long ownerId;
-
-    public Long getOwnerId() {
-        return ownerId;
-    }
-
-    public void setOwnerId(Long ownerId) {
-        this.ownerId = ownerId;
-    }
-
     // Getters and Setters
 
     public Long getId() {
@@ -71,12 +60,12 @@ public class Restaurant {
         this.id = id;
     }
 
-    public User getStaff() {
-        return staff;
+    public User getOwner() {
+        return owner;
     }
 
-    public void setStaff(User staff) {
-        this.staff = staff;
+    public void setOwner(User owner) {
+        this.owner = owner;
     }
 
     public String getName() {
@@ -167,4 +156,5 @@ public class Restaurant {
         this.foods = foods;
     }
 }
+
 

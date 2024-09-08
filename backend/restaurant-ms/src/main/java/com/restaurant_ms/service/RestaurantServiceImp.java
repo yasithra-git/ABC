@@ -40,8 +40,7 @@ public class RestaurantServiceImp implements RestaurantService{
         restaurant.setName(req.getName());
         restaurant.setOpeningHours(req.getOpeningHours());
         restaurant.setRegistrationDate(LocalDateTime.now());
-        restaurant.setStaff(user);
-        restaurant.setOwnerId(user.getId());
+        restaurant.setOwner(user);
         return restaurantRepository.save(restaurant);
     }
 

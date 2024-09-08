@@ -48,7 +48,7 @@ dispatch(updateRestaurantStatus({
                 <div className='flex'>
                   <p className='w-48'>Owner</p>
                   <p className='text-gray-400'><span className='pr-5'>-</span>
-                  {restaurant.usersRestaurant?.staff.fullName}
+                  {restaurant.usersRestaurant?.owner.fullName}
                   </p>
                 </div>
                 <div className='flex'>

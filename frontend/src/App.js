@@ -26,6 +26,10 @@ useEffect(() => {
   dispatch(findCart(jwt));
 }, [auth.jwt]);
 
+useEffect(() => {
+  dispatch(getRestaurantByUserId(auth.jwt || jwt));
+}, [auth.user]);
+
 
 
 
