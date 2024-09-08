@@ -32,46 +32,36 @@ const jwt=localStorage.getItem("jwt");
 
 const formik = useFormik({
   initialValues,
-  onSubmit: (values) => {
-    const data = {
-      name: values.name,
-      description: values.description,
-      cuisineType: values.cuisineType,
-      address: {
-        streetAddress: values.streetAddress,
-        city: values.city,
-        postalcode: values.postalcode,
-        country: values.country
-      },
-      contactInformation: {
-        email: values.email,
-        mobile: values.mobile
-      },
-      openingHours: values.openingHours,
-      images: values.images  // Array of image URLs
-    };
+  onSubmit:(values)=> {
+    const data ={
+      name:values.name,
+      description:values.description,
+      cuisineType:values.cuisineType,
+      address:{streetAddress:values.streetAddress,
+      city:values.city,
+      postalcode:values.postalcode,
+      country:values.country},
 
-    console.log("data ---", data);  // Verify the structure of data before dispatch
-    dispatch(createRestaurant({ data, token: jwt }));
+      contactInformation:{
+        email:values.email,
+        mobile:values.mobile},
+
+      openingHours:values.openingHours,
+      images: values.images
+    };
+    console.log("data ---",data)
+    dispatch(createRestaurant({data, token:jwt}))
   },
 });
 
 const handleImageChange = async (e) => {
-  const file = e.target.files[0];  // Get the first selected file
-  if (file) {  // Ensure that a file was selected
-    setUploadImage(true);  // Set the upload state to true
-    try {
-      const image = await uploadImageToCloudinary(file);  // Upload the file and get the URL
-      console.log("image ---", image);  // Log the uploaded image URL
-      formik.setFieldValue('images', [...formik.values.images, image]);  // Append new image URL to the images array
-    } catch (error) {
-      console.error("Image upload failed", error);  // Log any errors during the upload
-    } finally {
-      setUploadImage(false);  // Reset the upload state
-    }
-  }
-};
-
+  const file = e.target.files[0]
+  setUploadImage(true)
+  const image = await uploadImageToCloudinary(file)
+  console.log("image---", image)
+  formik.setFieldValue('images', [...formik.values.images,image])
+  setUploadImage(false)
+}
 
 const handleRemoveImage = (index) => {
   const updatedImages = [...formik.values.images]

@@ -26,7 +26,7 @@ const RestaurantCard = ({item}) => {
     <Card className='w-[18rem]'>
         <div className={`${true ? 'cursor-pointer' : 'cursor-not-allowed'} relative`}>
             <img className='w-full h-[10rem] rounded-t-md object-cover'
-                src={item.images[1]}
+                src={item.images[0]}
                 alt="" 
             />
             <Chip
@@ -41,6 +41,7 @@ const RestaurantCard = ({item}) => {
             <p onClick={handleNavigateToRestaurant} className="font-semibold 
             text-lg cursor-pointer">{item.name}</p>
             <p>{item.description}</p>
+            <p>{item.email}</p>
             </div>
             <div>
                 <IconButton onClick={handleAddToFavorite}>
