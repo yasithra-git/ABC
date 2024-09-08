@@ -17,7 +17,7 @@ const demo=[
         category:"Protein",
         ingredients:["Ground beef","Bacon strips"]
     }
-]
+];
 
 const MenuCard = ({item}) => {
   const [selectedIngredients, setSelectedIngredients] = useState([]);

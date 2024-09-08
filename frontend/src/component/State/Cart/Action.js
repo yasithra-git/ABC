@@ -69,7 +69,7 @@ export const updateCartItem = (reqData) => {
             const {data} = await api.put(`/api/cart-item/update`,reqData.data,
                 {
                 headers: {
-                    Authorization:`Bearer ${reqData.token}`,
+                    Authorization:`Bearer ${reqData.jwt}`,
                 },
             });
             console.log("update cart item",data)
@@ -86,6 +86,7 @@ export const removeCartItem = (cartItemId, jwt) => {
     return async (dispatch) => {
         dispatch({type:REMOVE_CARTITEM_REQUEST});
         try {
+            console.log(`Attempting to remove cart item with ID: ${cartItemId}`);
             const {data} = await api.delete(`/api/cart-item/${cartItemId}/remove`,
                 {
                 headers: {

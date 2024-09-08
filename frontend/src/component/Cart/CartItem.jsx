@@ -8,23 +8,24 @@ import { removeCartItem, updateCartItem } from '../State/Cart/Action';
 
 
 
-export const CartItem = (item) => {
+export const CartItem = ({item}) => {
     const {auth, cart} = useSelector((store) => store);
     const navigate = useNavigate();
-    const despatch = useDispatch();
+    const dispatch = useDispatch();
     const jwt=localStorage.getItem("jwt");
 
-    const handleUpdateCartItem = (value)=>{
-        if(value===-1 && item.quantity===1){
-            handleRemoveCartItem();
+    const handleUpdateCartItem = (value) => {
+        if (value === -1 && item.quantity === 1) {
+            handleRemoveCartItem(); // Remove if quantity is 0
+        } else {
+            const data = { cartItemId: item.id, quantity: item.quantity + value };
+            dispatch(updateCartItem({ data, jwt }));
         }
-    const data = {cartItemId:item.id, quantity:item.quantity+value}
-        despatch(updateCartItem({data, jwt}))
     };
 
-    const handleRemoveCartItem = ()=>{
-        despatch(removeCartItem({cartItemId:item.id, jwt:auth.jwt || jwt}))}
-
+    const handleRemoveCartItem = () => {
+        dispatch(removeCartItem(item.id, auth.jwt || jwt)); // Pass cartItemId and jwt separately
+    };
     
   return (
     <div className='px-5'>

@@ -75,7 +75,7 @@ const Cart = () => {
                         <div className='space-y-3'>
                             <div className='flex justify-between text-gray-400'>
                                 <p>Item Total</p>
-                                <p>Rs:{cart.cart?.total}</p>
+                                <p>Rs:{cart.cart.total}</p>
                             </div>
                             <div className='flex justify-between text-gray-400'>
                                 <p>Delivery Fee</p>
@@ -89,7 +89,7 @@ const Cart = () => {
                         </div>
                         <div className='flex justify-between text-gray-400'>
                             <p>Total pay</p>
-                            <p>Rs:{cart.cart?.total+20+30}</p>
+                            <p>Rs:{cart.cart.total+20+30}</p>
                         </div>
                     </div>
                 </section>
