@@ -16,15 +16,14 @@ export const CartItem = ({item}) => {
 
     const handleUpdateCartItem = (value) => {
         if (value === -1 && item.quantity === 1) {
-            handleRemoveCartItem(); // Remove if quantity is 0
-        } else {
-            const data = { cartItemId: item.id, quantity: item.quantity + value };
-            dispatch(updateCartItem({ data, jwt }));
+            handleRemoveCartItem(); 
         }
+        const data= {cartItemId: item.id, quantity: item.quantity + value};
+        dispatch(updateCartItem({data, jwt}));
     };
 
     const handleRemoveCartItem = () => {
-        dispatch(removeCartItem(item.id, auth.jwt || jwt)); // Pass cartItemId and jwt separately
+        dispatch(removeCartItem({cartItemId:item.id,jwt:auth.jwt || jwt})); // Pass cartItemId and jwt separately
     };
     
   return (

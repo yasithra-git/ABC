@@ -75,7 +75,7 @@ const Cart = () => {
                         <div className='space-y-3'>
                             <div className='flex justify-between text-gray-400'>
                                 <p>Item Total</p>
-                                <p>Rs:{cart.cart.total}</p>
+                                <p>Rs:{cart.cart?.total}</p>
                             </div>
                             <div className='flex justify-between text-gray-400'>
                                 <p>Delivery Fee</p>
@@ -89,7 +89,7 @@ const Cart = () => {
                         </div>
                         <div className='flex justify-between text-gray-400'>
                             <p>Total pay</p>
-                            <p>Rs:{cart.cart.total+20+30}</p>
+                            <p>Rs:{cart.cart?.total+20+30}</p>
                         </div>
                     </div>
                 </section>
@@ -97,7 +97,7 @@ const Cart = () => {
                 <section className='lg:w-[70%] flex justify-center px-5 pb-10 lg:pb-0'>
                     <div>
                         <h1 className='text-center font-semibold text-2xl pay-10 mt-10 mb-10'>
-                            Choose Delivery Address
+                            Confirm Your Reservation
                         </h1>
                         <div className='flex gap-5 flex-wrap justify-center mb-10'>
                             {[1, 1, 1].map((item, index) => (

@@ -5,7 +5,7 @@ export const createOrder = (reqData) => {
     return async (dispatch) => {
         dispatch({type:CREATE_ORDER_REQUEST});
         try {
-            const {data} = await api.post("/api/order", reqData.order, {
+            const {data} = await api.post("/api/orders", reqData.order, {
                 headers: {
                     Authorization:`Bearer ${reqData.jwt}`,
                 },
