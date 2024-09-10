@@ -13,6 +13,7 @@ import CreateMenuForm from '../Menu/CreateMenuForm'
 import { useDispatch, useSelector } from 'react-redux'
 import { getRestaurantById, getMenuItemsByRestaurantId, getRestaurantsCategory } from '../../component/State/Restaurant/Action'
 import { fetchRestaurantsOrder } from '../../component/State/RestaurantOrder/Action'
+import Footer from '../../component/Home/Footer'
 
 export const Admin = () => {
     const dispatch = useDispatch()
@@ -26,9 +27,9 @@ export const Admin = () => {
       
     },[]);
   return (
-    <div>
-        <div className= 'lg:flex justify-between'>
-            <div>
+    <div className='flex flex-col min-h-screen bg-custom-gradient-left-to-right bg-blend-custom-blend'>
+        <div className= 'flex flex-grow lg:flex justify-between'>
+            <div className='flex flex-grow'>
                 <AdminSideBar handleClose={handleClose}/>
             </div> 
 
@@ -46,6 +47,7 @@ export const Admin = () => {
 
             </div>
         </div>
+        
     </div>
   )
 }

@@ -44,7 +44,7 @@ export const ProfileNavigation = ({open,handleClose}) => {
         anchor='left' 
         sx={{zIndex:-1}}>
             <div className='w-[50vw] lg:w-[20vw] h-[100vw] flex flex-col 
-            justify-center text-xl gap-8 pt-16'>
+            justify-center text-xl gap-8 pt-16 bg-custom-gradient-right-to-left bg-blend-custom-blend'>
 
                 {menu.map((item,i)=>(<>
                 <div onClick={()=>handleNavigate(item)} className='px-5 flex items-center space-x-5 cursor-pointer'>

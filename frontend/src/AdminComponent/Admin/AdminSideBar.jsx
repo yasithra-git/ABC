@@ -45,7 +45,8 @@ export const AdminSideBar = ({ handleClose }) => {
                 anchor='left'
                 sx={{ zIndex: 1 }}
             >
-                <div className='w-[70vw] lg:w-[20vw] h-screen flex flex-col justify-center text-xl space-y-[1.65rem]'>
+                <div className='w-[70vw] lg:w-[20vw] h-screen flex flex-col justify-center 
+                text-xl space-y-[1.65rem] bg-custom-gradient-right-to-left bg-blend-custom-blend'>
                     {menu.map((item, i) => (
                         <React.Fragment key={i}>
                             <div onClick={() => handleNavigate(item)} className='px-5 flex items-center gap-5 cursor-pointer'>

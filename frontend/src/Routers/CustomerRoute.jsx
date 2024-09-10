@@ -6,6 +6,7 @@ import Cart from '../component/Cart/Cart'
 import Profile from '../component/Profile/Profile'
 import { Home } from '../component/Home/Home';
 import Auth from '../component/Auth/Auth';
+import Footer from '../component/Home/Footer';
 
 export const CustomerRoute = () => {
   return (

@@ -9,7 +9,7 @@ import Events from './Events'
 
 const Profile = () => {
   return (
-    <div className='lg:flex justify-between'>
+    <div className='lg:flex justify-between bg-custom-gradient-left-to-right bg-blend-custom-blend'>
         <div className='sticky h-[80vh] lg:w-[20%]'>
             <ProfileNavigation/>
         </div>

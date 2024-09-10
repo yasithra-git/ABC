@@ -36,7 +36,7 @@ const RestaurantCard = ({item}) => {
                 label={item.open?"open":"closed"}
             />
         </div>
-        <div className="p-4 textPart lg:flex w-full justify-between">
+        <div className="p-4 textPart lg:flex w-full justify-between bg-custom-gradient-left-to-right">
             <div className="space-y-1">
             <p onClick={handleNavigateToRestaurant} className="font-semibold 
             text-lg cursor-pointer">{item.name}</p>

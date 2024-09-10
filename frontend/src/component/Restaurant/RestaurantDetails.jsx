@@ -58,7 +58,7 @@ const RestaurantDetails = () => {
     },[selectedCategory, foodType])
 
   return (
-    <div className='px-5 lg:px-20'>
+    <div className='px-5 lg:px-20 bg-custom-gradient-left-to-right'>
 <section>
     <h3 className='text-gray-500 py-2 mt-10'>{restaurant.restaurant?.name}</h3>
     <div className="grid grid-cols-12 gap-2">

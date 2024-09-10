@@ -74,8 +74,8 @@ dispatch(updateRestaurantStatus({
                   <p className='text-gray-400'>
                     <span className='pr-5'>-</span>
                     {restaurant.usersRestaurant?.open?
-                      <span className='px-5 py-2 rounded-full bg-green-400 text-gray-950'>Open 
-                      </span>:<span className='px-5 py-2 rounded-full bg-red-400 text-gray-50'>
+                      <span style={{ backgroundColor: 'green', color: 'white' }} className='px-5 py-2 rounded-full text-gray-950'>Open 
+                      </span>:<span style={{ backgroundColor: 'red', color: 'white' }} className='px-5 py-2 rounded-full text-gray-50'>
                         Closed
                       </span>
                     }
